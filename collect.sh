@@ -7,7 +7,9 @@ ESXI_PASSWORD="REPLACE ME"
 
 # Init ssh config file
 echo -n > ~/.ssh/config.gen
+echo -n > ~/hosts.tsv
 
+echo "# BEGIN_GEN_HOSTS" >> ~/hosts.tsv
 sshpass -p ${ESXI_PASSWORD} ssh ${ESXI_USER}@${ESXI_HOST} 'vim-cmd vmsvc/getallvms' | while read line
 do
 	# echo $line
@@ -19,4 +21,6 @@ do
 
 	echo "Host $vmname
 	Hostname $ipaddr" >> ~/.ssh/config.gen
+	echo -e "${ipaddr}\t${vmname}" >> ~/hosts.tsv
 done
+echo "# END_GEN_HOSTS" >> ~/hosts.tsv
