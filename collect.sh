@@ -23,8 +23,8 @@ do
                 continue
         fi
 
-        echo "Host $vmname
+        echo "Host ${vmname,,}
         Hostname $ipaddr" >> ~/.ssh/config.gen
-        echo -e "${ipaddr}\t${vmname}" >> ~/hosts.tsv
+        echo -e "${ipaddr}\t${vmname,,}" >> ~/hosts.tsv
 done
 echo "# END_GEN_HOSTS" >> ~/hosts.tsv
