@@ -2,21 +2,40 @@
 
 This code generates [ssh_config](https://linux.die.net/man/5/ssh_config) from VMware ESXi machine list.
 
+## Prerequisite
+
+- Bash
+- `sshpass` command
+
 ## Usage
 
-1. Add `include` statement in ssh_config as follows
+1. Install sshpass command
+
+Ubuntu:
+
+```
+sudo apt install sshpass
+```
+
+2. Check SSH
+
+```
+ssh root@your_esxi_hostname
+```
+
+3. Add `include` statement in ssh_config as follows
 
 ```
 echo "Include ~/.ssh/config.gen" >> ~/.ssh/config
 ```
 
-2. Run `collect.sh`
+4. Run `collect.sh`
 
 ```
 bash collect.sh
 ```
 
-3. Verify the generated ssh_config
+5. Verify the generated ssh_config
 
 ```
 cat ~/.ssh/config.gen
